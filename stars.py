@@ -1,5 +1,9 @@
 
 
+def func0(myvar):
+    print('myvar = {}'.format(myvar))
+    print('type(myvar) = {}'.format(type(myvar)))
+
 def func1(*args):
     print('args = {}'.format(args))
     print('type(args) = {}'.format(type(args)))
