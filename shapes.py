@@ -49,7 +49,7 @@ class Rectangle(Shape):
 
     def __init__(self, width, length, **kwargs):
         self.width, self.length = sorted((width, length))
-        super.__init__(self, self.width, self.length, **kwargs)
+        super().__init__(self, self.width, self.length, **kwargs)
 
     def area(self, dp=2):
         return round(self.width*self.length, dp)
@@ -90,14 +90,17 @@ class Circle(Shape):
 
 
 class ColorMixin:
-    '''Mixins are a special kind of class,'''
     
     is_colored = True
     
     def __init__(self, *args, **kwargs):
-        color = kwargs.pop('color', None)
+        color = kwargs.get('color', None)
         if color is None:
             color = random.choice(COLORS)
-        super.__init__(*args, **kwargs)
+            kwargs['color'] = color
+        self.color = color
+        super().__init__(*args, **kwargs)
 
 
+class ColoredCircle(ColorMixin, Circle):
+    pass

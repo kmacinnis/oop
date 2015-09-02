@@ -1,3 +1,4 @@
+# from functools import total_ordering
 
 def gcd(a, b):
     """Calculates the Greatest Common Divisor of a and b.
@@ -63,9 +64,24 @@ class Fraction:
         n2, d2 = other.n, other.d
         return Fraction(n1*d2, d1*n2)
 
-    def __eq__(self, other):
-        return (self.n, self.d) == (other.n, other.d)        
+    def __radd__(self, other):
+        return self + other
 
+    def __rsub__(self, other):
+        return -self + other
+
+    def __eq__(self, other):
+        try:
+            return (self.n, self.d) == (other.n, other.d) 
+        except AttributeError:
+            return float(self) == float(other)
+    
+    def __gt__(self, other):
+        return float(self) > float(other)
+    
+    def __float__(self):
+        return self.n/self.d
+    
     def __str__(self):
         return "%s/%s" % (self.n, self.d)
 
