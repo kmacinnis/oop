@@ -1,0 +1,17 @@
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{kpfonts}
+
+
+
+\begin{document}
+\begin{tikzpicture}[scale=.5]
+  \node {\includegraphics{bloop}};
+  \begin{scope}[white,yshift=1mm]
+    \node [scale=.8]at (0,.9) {Different in};
+    \node [scale=1] at (0,.3) {Python};
+    \node [scale=3] at (0,-.8) {2};
+  \end{scope}
+\end{tikzpicture}
+
+
+\end{document}

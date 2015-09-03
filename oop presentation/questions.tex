@@ -1,0 +1,46 @@
+\documentclass[tikz,border=4pt]{standalone}
+\usetikzlibrary{shapes.symbols,decorations.text,shadows}
+\usepackage{kpfonts}
+
+
+
+\newcommand\importantstuff[3]{
+    \providecommand\xoffset{0.3}
+    \providecommand\yoffset{-0.2}
+    % Blur
+    \foreach \x in {-0.1,0.1} {
+        \foreach \y in {-0.1,0.1} {         
+            \node[black!20!color2,align=center] at (#1em+\xoffset em+\x em,#2em+\yoffset em+\y em) {
+                \scalebox{2}{\Huge\textbf{#3}} 
+            };
+        }
+    }
+
+    % Main Shadow
+    \node[black!40!color2,align=center] at (#1em+0.3em,#2em-0.2em) {
+        \scalebox{2}{\Huge\textbf{#3}} 
+    };
+    \node[white,align=center] at (#1em,#2em) {
+        \scalebox{2}{\Huge\textbf{#3}} 
+    };
+}
+
+\definecolor{color1}{RGB}{252,57,0}
+\definecolor{color2}{RGB}{252,115,0}
+\definecolor{color3}{RGB}{252,173,0}
+\definecolor{color4}{RGB}{252,202,0}
+\definecolor{color5}{RGB}{252,255,130}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+
+\node{\includegraphics[scale=2]{questionmarks}};
+\sffamily
+
+\importantstuff{0}{0}{Questions}
+
+\end{tikzpicture}
+
+\end{document}

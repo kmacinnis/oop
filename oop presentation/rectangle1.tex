@@ -1,0 +1,25 @@
+\documentclass[multi, border=10]{standalone}
+\usepackage[crane]{katescodingstyles}
+
+\setlength{\codeboxheight}{99pt}
+\setlength{\codeboxwidth}{250pt}
+
+\standaloneenv{fixedheightcode}
+
+\begin{document}
+
+\begin{fixedheightcode}
+class Rectangle:
+    def __init__(self, width, length):
+        self.width = width
+        self.length = length
+
+    def area(self):
+        return self.width * self.length
+\end{fixedheightcode}
+
+
+
+
+
+\end{document}

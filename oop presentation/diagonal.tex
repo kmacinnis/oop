@@ -1,0 +1,29 @@
+\documentclass[multi, border=6]{standalone}
+\usepackage[crane]{katescodingstyles}
+
+\setlength{\codeboxwidth}{330pt}
+\setlength{\codeboxheight}{82pt}
+
+\standaloneenv{fixedheightcode}
+
+\begin{document}
+
+
+  \begin{fixedheightcode}
+    class Rectangle:
+            |\vdots|
+        
+        def diagonal(self):
+            return round(sqrt(self.length**2 + self.width**2), 2)
+  \end{fixedheightcode}
+
+  \begin{fixedheightcode}
+    class Rectangle:
+            |\vdots|
+        @property
+        def diagonal(self):
+            return round(sqrt(self.length**2 + self.width**2), 2)
+  \end{fixedheightcode}
+
+
+\end{document}

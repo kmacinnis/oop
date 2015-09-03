@@ -1,0 +1,152 @@
+\documentclass[multi, tikz, border=4pt]{standalone}
+\usepackage[crane]{katescodingstyles}
+
+\usetikzlibrary{backgrounds, arrows}
+
+
+\begin{document}
+
+\tikzset{
+    invisible/.style={opacity=0},
+    visible on/.style={alt={#1{}{invisible}}},
+    alt/.code args={<#1>#2#3}{%
+      \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+    },
+  }
+
+
+
+
+
+
+%\begin{tikzpicture}[sibling distance=10em,
+%  every node/.style = {
+%    shape=rectangle, 
+%    rounded corners,
+%    draw, align=center,
+%    top color=craneorange!10, 
+%    bottom color=accentshade!20
+%    }
+%    ]
+%  \node {D} [grow'=up]
+%    child { node {B} }
+%    child { node {C}
+%      child { node {A} }};
+%\end{tikzpicture}
+%
+%
+%\begin{tikzpicture}[node distance=1.5cm,
+%  class/.style = {
+%    shape=rectangle, 
+%    rounded corners,
+%    draw, align=center,
+%    top color=craneorange!10, 
+%    bottom color=accentshade!20
+%    }
+%    ]
+%  \begin{scope} 
+%  
+%    \node[class] (D)                    {D};
+%    \node[class] (B) [above left of=D]  {B};
+%    \node[class] (A) [above right of=B] {A};
+%    \node[class] (C) [above right of=D] {C};
+%    
+%    \path (D) edge (B) edge (C);
+%    \path (A) edge (B) edge (C);  
+%  \end{scope}
+%  \begin{scope}[thick, red, ->]
+%    \draw (D) -> (B);
+%    \draw (B) -> (C);
+%    \draw (C) -> (A);
+%  \end{scope}
+%    
+%
+%  
+%\end{tikzpicture}
+%
+%
+%\begin{tikzpicture}[node distance=1.3cm,
+%  class/.style = {
+%    shape=rectangle, 
+%    rounded corners,
+%    draw, align=center,
+%    top color=craneorange!10, 
+%    bottom color=accentshade!20
+%    }
+%    ]
+%    \begin{scope}
+%      \node[class] (First) {First};
+%      \node[class] (Second) [below right of=First] {Second}; 
+%      \node[class] (Third) [below left of=Second] {Third}; 
+%      \path (First) edge (Second);
+%      \path (Second) edge (Third);
+%      \path (First) edge [bend right] (Third);
+%    \end{scope}
+%
+%\end{tikzpicture}
+%
+%
+%\begin{tikzpicture}[node distance=1.3cm,
+%  class/.style = {
+%    shape=rectangle, 
+%    rounded corners,
+%    draw, align=center,
+%    top color=craneorange!10, 
+%    bottom color=accentshade!20
+%    }
+%    ]
+%    \begin{scope}
+%      \node[class] (Alpha) {Alpha};
+%      \node[class] (Y) [above left of=Alpha] {Y}; 
+%      \node[class] (X) [above of=Y] {X};
+%      \node[class] (J) [above of=Alpha] {J};
+%      \node[class] (Z) [above right of=Alpha] {Z};
+%      \node[class] (W) [above of=Z] {W};
+%      \path (Alpha) edge (Y) edge(J) edge (Z);
+%      \path (Y) edge (X);
+%      \path (Z) edge (W);
+%      
+%      
+%    \end{scope}
+%
+%
+%
+%
+%\end{tikzpicture}
+%
+
+          \begin{tikzpicture}[node distance=3.3cm,
+            font=\LARGE\rmfamily,
+            class/.style = {
+              shape=rectangle, 
+              rounded corners,
+              draw, align=center,
+              top color=craneorange!10, 
+              bottom color=accentshade!20
+              },
+            ques/.style = {
+              font=\huge\bfseries,
+              color=red!80!blue,
+            }
+            ]
+              \begin{scope}
+                \node[class] (First) {First};
+                \node[class] (Second) [below right of=First] {Second}; 
+                \node[class] (Third) [below left of=Second] {Third}; 
+                \path (First) edge (Second);
+                \path (Second) edge (Third);
+                \path (First) edge [bend right] (Third);
+              \end{scope}
+              \begin{scope}[very thick, red, ->]
+%                \draw [visible on=<2->] (Third) edge [bend left] node (Q1)[ques,left] {?} (First);
+%                \draw [visible on=<3->] (Third) -- node (Q3)[ques,below right=-1mm] {?} (Second);
+%                \draw [visible on=<4->] (Second) -- node(Q2)[ques, above right=-1mm] {?} (First);
+                \node at (0.2,-2.2)[visible on=<5>,scale=5,ques] {???};
+              \end{scope}
+
+          \end{tikzpicture}
+
+
+
+
+\end{document}
