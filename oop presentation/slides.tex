@@ -1,15 +1,30 @@
-\documentclass[aspectratio=149, handout] {beamer}
+\documentclass[aspectratio=169] {beamer}
 \usecolortheme{crane}
+\usepackage[T1]{fontenc}
+
+
 \usepackage[crane]{katescodingstyles}
 \usepackage{hyperref}
 
 
+\graphicspath{ {graphics/} }
+
+
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[letterpaper,border shrink=5mm]
+%\mode<handout>{\setbeamertemplate{background}{
+%    \tikz \draw [darkshade] (current page.north west) rectangle (current page.south east);
+%        }}
+
+
+\mode<handout>{\setbeameroption{show notes}}
 
 
 
 
-\usepackage{handoutWithNotes}
-\pgfpagesuselayout{3 on 1 with notes}[a4paper,border shrink=5mm]
+
+%\usepackage{handoutWithNotes}
+%\pgfpagesuselayout{3 on 1 with notes}[a4paper,border shrink=5mm]
 
 %\setbeamertemplate{footline}[frame number alone]
 
@@ -32,7 +47,7 @@
 \title[OOP!]{Object-Oriented Python!}
 \subtitle{classes, subclasses, self and super}
 \author{Kate MacInnis}
-\institute{PyLadies-ATX Tech Talk\\September 3, 2015}
+\institute{PyLadies-ATX Tech Talk\\July 18, 2016}
 \date{}
 
 
@@ -41,8 +56,29 @@
 \begin{document}
 
 \begin{frame}
-\titlepage
+  \maketitle
+  \only<handout>{\centering
+  \color{accentshade!80!black}
+  Reference version: with bonus notes slides!}
+  \note[item]{
+    This version of the presentation is meant to be used as a 
+    reference, rather than presented.
+  
+    \smallskip
+  
+    Pages with this appearance contain notes 
+    about what I plan to say about the previous slide 
+    (the one in the tiny preview at the top of the page).
+  
+    \smallskip
+  
+    I hope that you find this useful as a reference.
+  }
 \end{frame}
+
+
+
+
 
 
 \begin{frame}[fragile]{In this presentation\dots}
@@ -88,43 +124,19 @@
 
   Save this in a text file called stars.py:
   
-  \begin{smallpythoncode}
-    def func0(myvar):
-        print('myvar = {}'.format(myvar))
-        print('type(myvar) = {}'.format(type(myvar)))
-    
-    def func1(*args):
-        print('args = {}'.format(args))
-        print('type(args) = {}'.format(type(args)))
-    
-    def func2(myvar, *args):
-        print('myvar = {}'.format(myvar))
-        print('args = {}'.format(args))
-    
-    def func3(myvar, *args, **kwargs):
-        print('myvar = {}'.format(myvar))
-        print('args = {}'.format(args))
-        print('kwargs = {}'.format(kwargs))
-        print('type(kwargs) = {}'.format(type(kwargs)))
-  \end{smallpythoncode}
-
-
+  \includegraphics[scale=.85]{stars.pdf}
 \end{frame}
-
-
-
-
 
 
 \begin{frame}[fragile,t]{ Nifty python tricks}
 
   \begin{columns}
-    \begin{column}[t]{.48\textwidth}
+    \begin{column}[t]{.58\textwidth}
       stars.py (for reference)
-      \includegraphics[scale=.85, trim= 0 0 7cm 0, clip]{stars.pdf}
+      \includegraphics[scale=.85]{stars.pdf}
     \end{column}
    
-    \begin{column}[t]{.48\textwidth}
+    \begin{column}[t]{.38\textwidth}
       Predict the outcome of each of these, 
       and test them in the console:
       \begin{pythoncode}
@@ -148,12 +160,12 @@
 \begin{frame}[fragile,t]{ Nifty python tricks}
 
   \begin{columns}
-    \begin{column}[t]{.48\textwidth}
+    \begin{column}[t]{.58\textwidth}
       stars.py (for reference)
-      \includegraphics[scale=.85, trim= 0 0 7cm 0, clip]{stars.pdf}
+      \includegraphics[scale=.85]{stars.pdf}
     \end{column}
    
-    \begin{column}[t]{.48\textwidth}
+    \begin{column}[t]{.38\textwidth}
       And these:
       \begin{pythoncode}
         func2(1,2,3,4,5)
@@ -177,12 +189,12 @@
 \begin{frame}[fragile,t]{ Nifty python tricks}
 
   \begin{columns}
-    \begin{column}[t]{.48\textwidth}
+    \begin{column}[t]{.58\textwidth}
       stars.py (for reference)
-      \includegraphics[scale=.85, trim= 0 0 7cm 0, clip]{stars.pdf}
+      \includegraphics[scale=.85]{stars.pdf}
     \end{column}
    
-    \begin{column}[t]{.48\textwidth}
+    \begin{column}[t]{.38\textwidth}
       And these:
       \begin{pythoncode}
         func3(1,2,3,4,5)
@@ -192,7 +204,7 @@
         func3(0, mathyfolks)
       \end{pythoncode}
   
-      \pause
+      \pause \small
       \begin{pythoncode}
         func3(0,**mathyfolks)
         func3(*colors,**mathyfolks)
@@ -211,97 +223,97 @@
   \begin{itemize}
     \onslide<2->{\item Within the parameters of a function definition:} 
       \begin{itemize}
-        \onslide<3->{\item \inlinett{*} packs all the extra positional arguments into a tuple} 
-        \onslide<5->{\item \inlinett{**} packs all the extra keyword arguments into a dictionary }
+        \onslide<3->{\item \inline{*} packs all the extra positional arguments into a tuple} 
+        \onslide<5->{\item \inline{**} packs all the extra keyword arguments into a dictionary }
       \end{itemize}
     \onslide<2->{\item Within the arguments of a function call:}  
       \begin{itemize}
-        \onslide<4->{\item \inlinett{*} unpacks a tuple, list, or other sequence type into positional arguments} 
-        \onslide<6->{\item \inlinett{**} unpacks a dictionary into keyword arguments }
+        \onslide<4->{\item \inline{*} unpacks a tuple, list, or other sequence type into positional arguments} 
+        \onslide<6->{\item \inline{**} unpacks a dictionary into keyword arguments }
       \end{itemize}
   \end{itemize}
 
 \end{frame}
 
 
-\begin{frame}[fragile]{Nifty python tricks}
-
-  A \keyword{decorator} is a special kind of function, 
-  one that accepts a function as input, 
-  and returns a replacement function\textsuperscript{*}.
-
-  \note{*It doesn't actually have to be a function, it just has to be callable.}
-
-  \medskip \pause
-
-  \begin{columns}
-
-    \begin{column}[b]{.65\textwidth}
-
-      \begin{smallpythoncode}
-      def my_decorator(original_function):
-    
-          def replacement_function():
-              print('Do stuff before')
-              original_function()
-              print('Do stuff after')
-
-          return replacement_function
-
-      def hello_world():
-          print('Hello world!')
-
-      f = my_decorator(hello_world)
-
-      \end{smallpythoncode}
-      
-    \end{column}
-    \begin{column}[b]{.3\textwidth}
-
-      What will happen\\when you call \inline`f()`?
-
-      \vspace{1cm}
-
-    \end{column}
-  \end{columns}
-\end{frame}
-
-
-\begin{frame}[fragile]{Nifty python tricks}
-
-  A common pattern emerged that people would redefine the function variable to mean the function with the decorator applied.
-  \begin{pythoncode}
-    hello_word = my_decorator(hello_world)
-  \end{pythoncode}
-  
-  \pause \medskip
-  
-  Beginning in Python 2.4, if you want to {always} use a decorator when you call a function, you can use use this syntax 
-  at the function's definition:
-  \begin{pythoncode}
-    @my_decorator
-    def hello_world():
-        print('Hello world!')
-  \end{pythoncode}
-
-\end{frame}
-
-\begin{frame}[fragile]{Nifty python tricks}
-
-  {\large Some Uses For Decorators}
-
-
-  \begin{itemize}
-    \item Caching the results of time-consuming calculations
-    \item Requiring that users are logged in before running the function
-    \item Checking that users have permission to run that function
-    \item To log the time it takes for the function to run
-  \end{itemize}
-
-  If you're interested in seeing the code for some decorators,
-  see: \url{https://wiki.python.org/moin/PythonDecoratorLibrary}
-
-\end{frame}
+%\begin{frame}[fragile]{Nifty python tricks}
+%
+%  A \keyword{decorator} is a special kind of function, 
+%  one that accepts a function as input, 
+%  and returns a replacement function\textsuperscript{*}.
+%
+%  \note[item]{*It doesn't actually have to be a function, it just has to be callable.}
+%
+%  \medskip \pause
+%
+%  \begin{columns}
+%
+%    \begin{column}[b]{.65\textwidth}
+%
+%      \begin{smallpythoncode}
+%      def my_decorator(original_function):
+%    
+%          def replacement_function():
+%              print('Do stuff before')
+%              original_function()
+%              print('Do stuff after')
+%
+%          return replacement_function
+%
+%      def hello_world():
+%          print('Hello world!')
+%
+%      f = my_decorator(hello_world)
+%
+%      \end{smallpythoncode}
+%      
+%    \end{column}
+%    \begin{column}[b]{.3\textwidth}
+%
+%      What will happen\\when you call \inlineverb`f()`?
+%
+%      \vspace{1cm}
+%
+%    \end{column}
+%  \end{columns}
+%\end{frame}
+%
+%
+%\begin{frame}[fragile]{Nifty python tricks}
+%
+%  A common pattern emerged that people would redefine the function variable to mean the function with the decorator applied.
+%  \begin{pythoncode}
+%    hello_word = my_decorator(hello_world)
+%  \end{pythoncode}
+%  
+%  \pause \medskip
+%  
+%  Beginning in Python 2.4, if you want to {always} use a decorator when you call a function, you can use use this syntax 
+%  at the function's definition:
+%  \begin{pythoncode}
+%    @my_decorator
+%    def hello_world():
+%        print('Hello world!')
+%  \end{pythoncode}
+%
+%\end{frame}
+%
+%\begin{frame}[fragile]{Nifty python tricks}
+%
+%  {\large Some Uses For Decorators}
+%
+%
+%  \begin{itemize}
+%    \item Caching the results of time-consuming calculations
+%    \item Requiring that users are logged in before running the function
+%    \item Checking that users have permission to run that function
+%    \item To log the time it takes for the function to run
+%  \end{itemize}
+%
+%  If you're interested in seeing the code for some decorators,
+%  see: \url{https://wiki.python.org/moin/PythonDecoratorLibrary}
+%
+%\end{frame}
 
 
 
@@ -332,12 +344,12 @@
   
   \medskip \pause
   
-  I will also ask from time to time what you expect to happen in a situation.
+  \note[item]{I will also ask from time to time what you expect to happen in a situation.
   ``Wrong'' answers will be embraced enthusiastically.  
   Some of the ideas that I will introduce are a little bit counter-intuitive.
   To really understand, we will need to examine our intuition,
   see how it is different from reality, 
-  and take a look at the reason for those differences. 
+  and take a look at the reason for those differences. }
 
 \end{frame}
 
@@ -358,9 +370,7 @@
   the code is conceptualized around objects 
   that bundle together relevant values (attributes) and functions (methods).
 
-  \bigskip \pause
-
-  There are other paradigms, but these are the two that Python is most commonly used for.
+  \note[item]{There are other paradigms, but these are the two that Python is most commonly used for.}
 
 \end{frame}
 
@@ -424,13 +434,14 @@
 
 \end{frame}
 
+
 \begin{frame}[fragile]{Our first interesting object}
 
   Most interesting objects need to be \keyword{initialized}.
 
   \pause \medskip
 
-  In python, we define an \inline`__init__` 
+  In python, we define an \inlineverb`__init__` 
   method on our class to handle the initialization.
 
   \pause \medskip
@@ -447,23 +458,13 @@
 
   \medskip
 
-  The \inline`__init__` method that we are defining here is sometimes called a magic method.  You can call it directly, but python uses this method automatically whenever a new instance of the class is created.
-\end{frame}
-
-
-\begin{frame}[fragile]{Important Points on \_\_init\_\_}
-
-  \begin{itemize}
-
-    \item The first argument passed to init is the newly created instance of the class. Call this \inline`self`.  
-
-    (This is not specific to init: the first argument passed to any method is the instance, and it should always be called self. Python wont enforce this, but your fellow coders and future self will thank you.)
-
-    \bigskip
-
-    \item Notice that \inline`__init__` does not return anything!  It sets the values of attributes on the newly created object.  It should never contain a return statement
-  \end{itemize}
-
+  \note[item]{The \inline{\_\_init\_\_} method that we are defining here is sometimes called a magic method.  
+  You can call it directly, but you don't usually.
+  Instead, python uses this method automatically whenever a new instance of the class is created.}
+  \note[item]{The first argument passed to init is the newly created instance of the class. \\Call this \inline{self}. \\
+  (This is not specific to init: the first argument passed to any method is the instance, and it should always be called self. Python wont enforce this, but your fellow coders and future self will thank you.)
+  }
+  \note[item] {Notice that \inline{\_\_init\_\_} does not return anything!  It sets the values of attributes on the newly created object.  It should never contain a return statement.}
 \end{frame}
 
 
@@ -471,13 +472,11 @@
 
 
   \begin{columns}
-    \begin{column}[t]{.59\textwidth}
+    \begin{column}[t]{.63\textwidth}
       To make this example more useful,\\lets add another method. 
  
       %\vspace{-5ex}
-      \only<1|handout:0>{\includegraphics{rectangle1}}
-      \pause
-      \begin{smallpythoncode}
+      \begin{pythoncode}
         class Rectangle:
             def __init__(self, width, length):
                 self.width = width
@@ -485,13 +484,15 @@
     
             def area(self):
                 return self.width * self.length
-      \end{smallpythoncode}
+      \end{pythoncode}
+      \pause
     \end{column}
-    \begin{column}[t]{.42\textwidth}
+    \begin{column}[t]{.36\textwidth}
       Let's make a rectangle!  
 
       In the console:
       \begin{pythoncode}
+        from shapes import *
         r = Rectangle(3,5)
         r.width
         r.length
@@ -506,31 +507,32 @@
 
   \bigskip \pause
   
-  We will want a better representation of our rectangle than \inline`<__main__.Rectangle at 0x101e45ba8>`
+  We will want a better representation of our rectangle than \inlineverb`<__main__.Rectangle at 0x101e45ba8>`
 
 \end{frame}
 
 
+
 \begin{frame}[fragile]{Better represenation}
 
-  There are two special methods that we can use to return a string representation of our objects: \inline`__str__` and \inline`__repr__`. \pause
+  There are two special methods that we can use to return a string representation of our objects: \inlineverb`__str__` and \inlineverb`__repr__`. \pause
 
   \begin{itemize}
 
-    \item \inline`__str__` should be used for a string representation that is useful to 
+    \item \inlineverb`__str__` should be used for a string representation that is useful to 
     the end-user. \pause
 
-    \item \inline`__repr__` should be used for a string representation that is useful to 
+    \item \inlineverb`__repr__` should be used for a string representation that is useful to 
     the programmer.  This is what the console shows.
 
+    \bigskip
+
+    \note[item]{It is considered a good practice to make the output of \inline{\_\_repr\_\_} something that can recreate the object, if possible.
+     If this is not possible, a useful description for debugging purposes should be enclosed in \inline{\< \>}.
+
     \medskip
 
-    It is considered a good practice to make the output of \inline`__repr__` something that can recreate the object, if possible.
-     If this is not possible, a useful description for debugging purposes should be enclosed in \inline`< >`.
-
-    \medskip
-
-    If a class has no \inline`__str__` method, but has \inline`__repr__`, \inline`__repr__` will be used whenever \inline`__str__` is called for.
+    If a class has no \inline{\_\str\_\_} method, but has \inline{\_\_repr\_\_}, \inline{\_\_repr\_\_} will be used whenever \inline{\_\_str\_\_} is called for.}
 
   \end{itemize}
 
@@ -538,7 +540,7 @@
 
 \begin{frame}[fragile]{Better representation}
 
-Let's add a \inline`__repr__` method to our class:
+Let's add a \inlineverb`__repr__` method to our class:
 \small
 \begin{pythoncode}
 class Rectangle:
@@ -570,7 +572,7 @@ make a new rectangle object, and see how it is displayed.
   \pause \smallskip
   
   Since the diagonal of a rectangle with sides $l$ and $w$ 
-  is $\sqrt{l^2 + w^2}$,\\[-1pt]
+  is $\sqrt{l^2 + w^2}$,  %\\[-1pt]
   we can write a method:
   
   \smallskip \pause
@@ -579,18 +581,21 @@ make a new rectangle object, and see how it is displayed.
   \onslide<4->
   \includegraphics[page=2]{diagonal}
   
-  The \inline`@property` decorator makes a method seem like an
+  The \inline{@property} decorator makes a method seem like an
   attribute.
+  
+  \note[item]{You may not be familiar with decorator. (This is the first context I ever saw them).
+  A decorator is a way of changing a function into something else (usually another function).
+  The best explaination of decorators I have found is at: \url{pythonconquerstheuniverse.wordpress.com/2012/04/29/python-decorators/}
+  }
   
   
 \end{frame}
 
 
-
-
 \begin{frame}[fragile]{Subclassing}
 
-  We can create a subclass of any existing class---whether that class is a built-in class or something that we've made ourselves.
+  We can create a subclass of any existing class--- whether that class is a built-in class or something that we've made ourselves.
 
   \medskip \pause
 
@@ -611,8 +616,8 @@ make a new rectangle object, and see how it is displayed.
 
   \pause
 
-  Where does the \inline`area` method come from? \\
-  What happens when you run \inline`s.area()`?
+  Where does the \inline{area} method come from? \\
+  What happens when you run \inlineverb`s.area()`?
 
 \end{frame}
 
@@ -622,17 +627,17 @@ make a new rectangle object, and see how it is displayed.
 
   \medskip
 
-  We could do that manually, or we could use the \inline`super` function\textsuperscript{*}. 
+  We could do that manually, or we could use the \inline{super} function\textsuperscript{*}. 
 
   \medskip
 
-  The \inline`super` function returns the superclass of the class you're currently writing.
+  The \inline{super} function returns the superclass of the class you're currently writing.
 
 \end{frame}
 
 \begin{frame}[fragile]{Subclassing}
 
-  We can fix our \inline`Square` class like this:
+  We can fix our \inline{Square} class like this:
 
   \begin{pythoncode}
     class Square(Rectangle):
@@ -641,9 +646,29 @@ make a new rectangle object, and see how it is displayed.
             super().__init__(side, side)
   \end{pythoncode} 
   
+  \note[item]{
+  Since \inline{Square} is a subclass of
+  \inline{Rectangle}, we say \inline{Rectangle} is a \keyword{superclass} of \inline{Square}. 
+  }
+  \note[item]{
+  \inline{super} is a built-in python function that,
+  when used inside a class method,
+  gets the superclass of the class (it's a little more 
+  complicated once we get to multiple inheritence, but we'll talk about that later.
+  }
+  \note[item]{
+  In Python 2, you need to provide arguments for \inline{super}.  The arguments should be the name of the class \emph{that you are currently writing} (not the superclass!) and \inline{self}.
+  So in our example, it would be:
+  \inline{super(Square,self).\_\_init\_\_(side,side)}
+  }
+  \note[item]{
+  Notice that our object \inline{s} identifies itself 
+  as a rectangle still.  That is less than ideal, and we'll fix it in the next slide.
+  }
+  
   \pause
   
-  \pyTWO[xshift=12cm,yshift=1cm] \pause
+  \pyTWO[xshift=14cm,yshift=1cm] \pause
 
   Now, try this in the terminal:
 
@@ -670,7 +695,6 @@ make a new rectangle object, and see how it is displayed.
 
 \end{frame}
 
-
 \begin{frame}[fragile]{Refactoring time}
   
   When you find yourself having to make lots and lots of little changes
@@ -679,7 +703,7 @@ make a new rectangle object, and see how it is displayed.
   
   \bigskip
   
-  Let's create a new base class, \inline`Shape`, which we won't instantiate directly,
+  Let's create a new base class, \inline{Shape}, which we won't instantiate directly,
   but will hold the some code that will be common to all our shapes.
   
 \end{frame}
@@ -729,13 +753,14 @@ make a new rectangle object, and see how it is displayed.
   This doesn't force subclasses to implement an area method, 
   it's just a convention for working with other programmers.
   
-  \smallskip \pause
   
-  If you need to absolutely force certain methods to be implemented, 
-  look into the  \inline`abc` module of the standard library.
+  \note[item]{If you need to absolutely force certain methods to be implemented, 
+  look into the  \inline{abc} module of the standard library.
   That will allow you to create an \keyword{Abstract Base Class} 
   to which you can add abstract methods which must be implemented on 
-  any subclass before the subclass can be instantiated. 
+  any subclass before the subclass can be instantiated.
+  You can read more about the \inline{abc} module at:
+  \url{https://docs.python.org/3/library/abc.html}} 
 
 
 \end{frame}
@@ -743,7 +768,7 @@ make a new rectangle object, and see how it is displayed.
 
 \begin{frame}[fragile]{Changes to the Base Class}
 
-Finally, let's make \inline`shape` a property of our base class:
+Finally, let's make \inline{shape} a property of our base class:
 
 
   \begin{pythoncode}
@@ -827,7 +852,7 @@ class Rectangle(Shape):
 
 \begin{frame}[fragile]{Your turn\dots}
 
-  Make a \inline`Circle` class.
+  Make a \inline{Circle} class.
   
   \medskip\pause
   
@@ -855,7 +880,7 @@ class Rectangle(Shape):
     Circle(3) == Circle(3)
   \end{pythoncode}
   \pause
-  What happens? Why?
+  What happens? Any ideas why?
   
   \medskip\pause
   
@@ -878,7 +903,7 @@ class Rectangle(Shape):
 \begin{frame}[fragile]{Equality!}
 
   To tell python how to determine equality, we add another special method,
-  called \inline`__eq__`: \pause
+  called \inlineverb`__eq__`: \pause
 
   \begin{pythoncode}
     class Shape:
@@ -893,7 +918,7 @@ class Rectangle(Shape):
 
   \medskip \pause
   
-  Now try \inline`Circle(3) == Circle(3)` again.
+  Now try \inlineverb`Circle(3) == Circle(3)` again.
 
 
 \end{frame}
@@ -901,7 +926,7 @@ class Rectangle(Shape):
 
 \begin{frame}[fragile]{Operator Overloading / More Special Methods}
   
-  Open \inline`fractions.py` in a text editor.
+  Open \inlineverb`fractions.py` in a text editor.
   \tiny
   \begin{pythoncode}
     class Fraction:
@@ -956,9 +981,8 @@ class Rectangle(Shape):
 
 \begin{frame}[fragile]{Operator Overloading / More Special Methods}
   Here are some common operators and the methods to implement on your classes. 
-\note{   \inline`obj` is the instance of the object that you are writing a class for}
+\note[item]{   \inline{obj} is the instance of the object that you are writing a class for, \inline{other} is the object that will be added/subtracted/multiplied/etc. to it}
 
-  \small \vspace{-4ex}
   
   
     \begin{columns}
@@ -968,14 +992,14 @@ class Rectangle(Shape):
             \hline
             operation & method\\
             \hline
-               \inline`obj + other` & \inline`__add__` \\
-               \inline`obj - other` & \inline`__sub__` \\
-               \inline`obj * other` & \inline`__mul__` \\
-               \inline`obj // other` & \inline`__floordiv__` \\
-               \inline`obj / other` * & \inline`__div__` \\
-               \inline`obj / other` ** & \inline`__truediv__` \\
-               \inline`obj % other` & \inline`__mod__` \\
-               \inline`obj ** other` & \inline`__pow__` \\
+               \inlineverb`obj + other` & \inlineverb`__add__` \\
+               \inlineverb`obj - other` & \inlineverb`__sub__` \\
+               \inlineverb`obj * other` & \inlineverb`__mul__` \\
+               \inlineverb`obj // other` & \inlineverb`__floordiv__` \\
+               \inlineverb`obj / other` * & \inlineverb`__div__` \\
+               \inlineverb`obj / other` ** & \inlineverb`__truediv__` \\
+               \inlineverb`obj % other` & \inlineverb`__mod__` \\
+               \inlineverb`obj ** other` & \inlineverb`__pow__` \\
             \hline
           \end{tabular}
         \end{center}        
@@ -986,14 +1010,14 @@ class Rectangle(Shape):
             \hline
             operation & method\\
             \hline
-            \inline`other + obj` & \inline`__radd__` \\
-            \inline`other - obj` & \inline`__rsub__` \\
-            \inline`other * obj` & \inline`__rmul__` \\
-            \inline`other // obj` & \inline`__rfloordiv__` \\
-            \inline`other / obj` * & \inline`__rdiv__` \\
-            \inline`other / obj` ** & \inline`__rtruediv__` \\
-            \inline`other % obj` & \inline`__rmod__` \\
-            \inline`other ** obj` & \inline`__rpow__` \\
+            \inlineverb`other + obj` & \inlineverb`__radd__` \\
+            \inlineverb`other - obj` & \inlineverb`__rsub__` \\
+            \inlineverb`other * obj` & \inlineverb`__rmul__` \\
+            \inlineverb`other // obj` & \inlineverb`__rfloordiv__` \\
+            \inlineverb`other / obj` * & \inlineverb`__rdiv__` \\
+            \inlineverb`other / obj` ** & \inlineverb`__rtruediv__` \\
+            \inlineverb`other % obj` & \inlineverb`__rmod__` \\
+            \inlineverb`other ** obj` & \inlineverb`__rpow__` \\
             \hline
           \end{tabular}
         \end{center}
@@ -1003,7 +1027,7 @@ class Rectangle(Shape):
 
 \bigskip
 \scriptsize * only in Python 2\\
- ** in Python 3, or in Python 2, with \inlinett{\tiny from \_\_future\_\_ import division} 
+ ** in Python 3, or in Python 2, with \inline{\tiny from \_\_future\_\_ import division} 
   
   
 \end{frame}
@@ -1011,7 +1035,7 @@ class Rectangle(Shape):
 
 \begin{frame}[fragile]{Operator Overloading / More Special Methods}
   
-  We implemented \inline`__eq__` on our shapes class, but there are more comparison operators than just that.
+  We implemented \inlineverb`__eq__` on our shapes class, but there are more comparison operators than just that.
   
   \small
           \begin{center}
@@ -1019,106 +1043,26 @@ class Rectangle(Shape):
             \hline
             operation & method\\
             \hline
-            \inline`obj == other` & \inline`__eq__` \\
-            \inline`obj != other` & \inline`__ne__` \\
-            \inline`obj < other` & \inline`__lt__` \\
-            \inline`obj > other` & \inline`__gt__` \\
-            \inline`obj <= other` & \inline`__le__` \\
-            \inline`obj >= other` & \inline`__ge__` \\
+            \inlineverb`obj == other` & \inlineverb`__eq__` \\
+            \inlineverb`obj != other` & \inlineverb`__ne__` \\
+            \inlineverb`obj < other` & \inlineverb`__lt__` \\
+            \inlineverb`obj > other` & \inlineverb`__gt__` \\
+            \inlineverb`obj <= other` & \inlineverb`__le__` \\
+            \inlineverb`obj >= other` & \inlineverb`__ge__` \\
             \hline
           \end{tabular}
         \end{center}
         \normalsize
-        For our fractions class,
+        \note[item]{For our fractions class,
         we could either implement all six comparisons,
-        or we could implement \inline`__eq__` plus just one
-        of \inline`__lt__`, \inline`__gt__`, \inline`__le__`,
-        or \inline`__ge__` and use the 
+        or we could implement \inline{\_\_eq\_\_} plus just one
+        of \inline{\_\_lt\_\_}, \inline{\_\_gt\_\_}, \inline{\_\_le\_\_},
+        or \inline{\_\_ge\_\_} and use the 
         class decorator
-        \inline`@total_ordering`.
+        \inline{@total\_ordering}.}
   
 \end{frame}
 
-
-
-\begin{frame}[fragile]{Pythonic Protocols}
-  
-  Python doesn't have interfaces the way Java and many other staticly-typed languages do.
-  \note{You *can* create interfaces in Python (see Zope) but it's not necessary the way it is in other languages,
-  because Python generally relies on Duck-Typing and supports multiple inheritance}
-  
-  \bigskip
-  
-  Because traditionally Python relies heavily on \keyword{duck typing}, for your object to be treated
-  like one of a category of objects, all you have to is implement the right methods.  
-  This is sometimes loosely called a Protocol.
-  
-
-  
-\end{frame}
-
-
-
-
-\begin{frame}[fragile]{Protocols}
-  
-  To create a container object, implement:
-  \begin{itemize}
-  	\item \inline`__len__`
-    \item \inline`__getitem__` \pause
-    \item \inline`__setitem__` (if you want a mutable container)
-    \item \inline`__delitem__` (if you want a mutable container) \pause
-    \item \inline`__iter__` (if you want your container to be iterable)
-  \end{itemize}
-
-  \medskip \pause
-  
-  To create an iterator, either write a generator (a function that uses the \inline`yield` statement to return a sequence of values) or write a new class that implements:
-  \begin{itemize}
-    \item \inline`__iter__`
-    \item \inline`__next__` \pyTWO[xshift=3cm]
-  \end{itemize}
-
-  
-\end{frame}
-
-
-\begin{frame}[fragile]{Protocols}
-  \setlength{\unitlength}{1cm}
-  \begin{picture}(6,.01)
-    \put(4,-3.3){\includegraphics[scale=.85]{with}}
-  \end{picture}
-  
-  To create a context manager object that works in a \inline`with` statement:
-    
-  \begin{itemize}
-    \item \inline`__enter__`
-    \item \inline`__exit__`
-  \end{itemize}
-  
-  \vspace{1.2cm}
-  
-  \medskip \pause  
-  
-  To create an object that can be called like a function, implement:
-  \begin{itemize}
-    \item \inline`__call__`
-  \end{itemize}
-  
-
-  
-\end{frame}
-
-\begin{frame}[fragile]{Subclassing Built-In Types}
-  
-  
-  Although duck typing is the ``Pythonic'' way, if your object needs to interact with code that will do \inline`isinstance` checks,
-  you should subclass the type that you need it to be.  
-  You can then change the methods however you want.
-  \note{Remember, when you write a method on a subclass, the method with the same name on the superclass is replaced.}
-  
-  
-\end{frame}
 
 \begin{frame}[fragile]{Multiple Inheritance}
   
@@ -1267,7 +1211,7 @@ class Rectangle(Shape):
             <class 'multi.C'>, <class 'multi.A'>, 
             <class 'object'>]
           \end{codeblock}
-          \note{Emphasize that it's important that if This is a parent class of That, then This must come after That in the MRO.}
+          \note[item]{Emphasize that it's important that if This is a parent class of That, then This must come after That in the MRO.}
         \end{center}
       \end{column}
     \end{columns}  
@@ -1421,49 +1365,45 @@ class Rectangle(Shape):
   
   \begin{itemize}
     
-    \only<1-3|handout:1>{
-    \item<2,3> Python determines where to look for methods and attributes by the 
+    
+    \item<2-4> Python determines where to look for methods and attributes by the 
     Method Resolution Order.  This also determines what method gets called by
-    \inlinett{super()}
+    \inline{super()}
 
-    \item<3> The approach to the Method Resolution Order, is left-to-right, depth-first,
+    \item<3-4> The approach to the Method Resolution Order, is left-to-right, depth-first,
     guarantees that each class only appears once, and that parent classes appear after
     all classes that inherit from them.
-}
 
-    \only<4-5|handout:2>{
-    \item<4,5> When working in Python 2, you must create your classes by subclassing
+
+    \note[item]{ When working in Python 2, you must create your classes by subclassing
     the built-in object
-    \inlinett{class MyClass(object):} instead of 
-    \inlinett{class MyClass:}.  
+    \inline{class MyClass(object):} instead of 
+    \inline{class MyClass:}.  
     Otherwise, you will have broken and unpredictable multiple inheritance
-    behavior.
-    \pyTWO[xshift=-5.8cm,yshift=1cm]
+    behavior.}
 
-    \item<5> A common pattern is to have a base class that you want to modify with
+    \item<4> A common pattern is to have a base class that you want to modify with
     small modifier classes
     Because the overall approach to the Method Resolution Order is left-to-right,
     you should \textbf{not} use 
-    \inlinett{class MyClass(BaseClass, Modifier1, Modifier2)}. \\[3pt]
+    \inline{class MyClass(BaseClass, Modifier1, Modifier2)}. \\[3pt]
     Instead, use 
-    \inlinett{class MyClass(Modifier1, Modifier2, BaseClass):}.
+    \inline{class MyClass(Modifier2, Modifier1, BaseClass):}.
 
-}  \end{itemize}
+  \end{itemize}
     
 \end{frame}
 
 
 
-
-
 \begin{frame}{Back to the shapes}
   
-  \note{One problem with the code we've written for our various shapes is that even though the base class handles kwargs, %
+  \note[item]{One problem with the code we've written for our various shapes is that even though the base class handles kwargs, 
   		the subclasses don't, and don't pass any along to super, so the base class won't actually get any kwargs. 
   		This update fixes that.}
   We're going to work with the shapes.py code again,
   so please copy the slightly updated version from
-  \url{}
+  \url{pydancing.wordpress.com/oop}
   
 \end{frame}
 
@@ -1499,7 +1439,7 @@ class Rectangle(Shape):
 
   \pause \medskip
   
-  Now, what should we do to create a \inline`ColoredCircle` class?
+  Now, what should we do to create a \inline{ColoredCircle} class?
   
 \end{frame}
 
@@ -1507,7 +1447,7 @@ class Rectangle(Shape):
 \begin{frame}[fragile]{Mixin: Inheriting Color}
   
   For each shape that we want a colored version of, 
-  we need to create a class that inherits from our \inline`ColorMixin`
+  we need to create a class that inherits from our \inline{ColorMixin}
   and the original shape.
   
   \begin{pythoncode}
@@ -1528,9 +1468,94 @@ class Rectangle(Shape):
 
   \begin{pythoncode}
     y = ColoredCircle(5, color='Yellow')
+    r = ColoredCircle(11)
   \end{pythoncode}
 
 \end{frame}
+
+
+
+\begin{frame}[fragile]{Pythonic Protocols}
+  
+  Python doesn't have interfaces the way Java and many other staticly-typed languages do.
+  \note[item]{You *can* create interfaces in Python (see Zope) but it's not necessary the way it is in other languages,
+  because Python generally relies on Duck-Typing and supports multiple inheritance}
+  
+  \bigskip
+  
+  Because traditionally Python relies heavily on \keyword{duck typing}, for your object to be treated
+  like one of a category of objects, all you have to is implement the right methods.  
+  This is sometimes loosely called a Protocol.
+  
+
+  
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{Protocols}
+  
+  To create a container object, implement:
+  \begin{itemize}
+  	\item \inlineverb`__len__`
+    \item \inlineverb`__getitem__` \pause
+    \item \inlineverb`__setitem__` (if you want a mutable container)
+    \item \inlineverb`__delitem__` (if you want a mutable container) \pause
+    \item \inlineverb`__iter__` (if you want your container to be iterable)
+  \end{itemize}
+
+  \medskip \pause
+  
+  To create an iterator, either write a generator (a function that uses the \inline{yield} statement to return a sequence of values) or write a new class that implements:
+  \begin{itemize}
+    \item \inlineverb`__iter__`
+    \item \inlineverb`__next__` \pyTWO[xshift=3cm]
+  \end{itemize}
+
+  
+\end{frame}
+
+
+\begin{frame}[fragile]{Protocols}
+  \setlength{\unitlength}{1cm}
+  \begin{picture}(6,.01)
+    \put(4,-3.3){\includegraphics[scale=.85]{with}}
+  \end{picture}
+  
+  To create a context manager object that works in a \inline{with} statement:
+    
+  \begin{itemize}
+    \item \inlineverb`__enter__`
+    \item \inlineverb`__exit__`
+  \end{itemize}
+  
+  \vspace{1.2cm}
+  
+  \medskip \pause  
+  
+  To create an object that can be called like a function, implement:
+  \begin{itemize}
+    \item \inlineverb`__call__`
+  \end{itemize}
+  
+
+  
+\end{frame}
+
+\begin{frame}[fragile]{Subclassing Built-In Types}
+  
+  
+  Although duck typing is the ``Pythonic'' way, if your object needs to interact with code that will do \inline{isinstance} checks,
+  you should subclass the type that you need it to be.  
+  You can then change the methods however you want.
+  \note[item]{Remember, when you write a method on a subclass, the method with the same name on the superclass is replaced.}
+  
+  
+\end{frame}
+
+
+
 
 
 {
@@ -1568,7 +1593,7 @@ class Rectangle(Shape):
 \begin{frame}[fragile]{Protection for Attributes}
   
    \small
-  Let's change our \inline`Circle` class to follow this convention:
+  Let's change our \inline{Circle} class to follow this convention:
  
   \begin{pythoncode}
     class Circle(Shape):
@@ -1587,7 +1612,7 @@ class Rectangle(Shape):
 
   That does not prevent someone else from using or changing the attribute.
   
-  \inline`mycircle._radius = 0` will work.
+  \inlineverb`mycircle._radius = 0` will work.
   
 \end{frame}
 
@@ -1622,13 +1647,13 @@ class Rectangle(Shape):
   
   \bigskip
   
-  It stores \inline`self.__radius` as \inline`self._Circle__radius`.
+  It stores \inlineverb`self.__radius` as \inlineverb`self._Circle__radius`.
 
   \bigskip \pause
   
-  The good news is \inline`mycircle._radius = 0` will result in an error message.
+  The good news is \inlineverb`mycircle._radius = 0` will result in an error message.
   The bad news is, if someone is determmined to break things, 
-  they can do \inline`mycircle._Circle__radius = 0`.
+  they can do \inlineverb`mycircle._Circle__radius = 0`.
   
   
 \end{frame}

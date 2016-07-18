@@ -2,12 +2,16 @@
 \usepackage[crane]{katescodingstyles}
 
 
-\standaloneenv{pythoncode}
+\setlength{\codeboxheight}{220pt}
+\setlength{\codeboxwidth}{280pt}
+
+
+\standaloneenv{fixedsizepythoncode}
 
 
 \begin{document}
 
-\begin{pythoncode}
+\begin{fixedsizepythoncode}
 def func0(myvar):
     print('myvar = {}'.format(myvar))
     print('type(myvar) = {}'.format(type(myvar)))
@@ -25,7 +29,7 @@ def func3(myvar, *args, **kwargs):
     print('args = {}'.format(args))
     print('kwargs = {}'.format(kwargs))
     print('type(kwargs) = {}'.format(type(kwargs)))
-\end{pythoncode}
+\end{fixedsizepythoncode}
 
 
 \end{document}

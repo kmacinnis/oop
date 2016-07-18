@@ -1,29 +1,33 @@
 \documentclass[multi, border=6]{standalone}
 \usepackage[crane]{katescodingstyles}
 
-\setlength{\codeboxwidth}{330pt}
-\setlength{\codeboxheight}{82pt}
+\setlength{\codeboxwidth}{333pt}
+\setlength{\codeboxheight}{102pt}
 
-\standaloneenv{fixedheightcode}
+\standaloneenv{fixedsizepythoncode}
 
 \begin{document}
 
 
-  \begin{fixedheightcode}
+  \begin{fixedsizepythoncode}
+    from math import sqrt
+    
     class Rectangle:
             |\vdots|
         
         def diagonal(self):
             return round(sqrt(self.length**2 + self.width**2), 2)
-  \end{fixedheightcode}
+  \end{fixedsizepythoncode}
 
-  \begin{fixedheightcode}
+  \begin{fixedsizepythoncode}
+    from math import sqrt
+    
     class Rectangle:
             |\vdots|
         @property
         def diagonal(self):
             return round(sqrt(self.length**2 + self.width**2), 2)
-  \end{fixedheightcode}
+  \end{fixedsizepythoncode}
 
 
 \end{document}
